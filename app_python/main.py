@@ -1,26 +1,48 @@
-import pytz
-from flask import Flask, render_template
 from datetime import datetime
+import pytz
+from flask import Blueprint, render_template, abort
 
 
-app = Flask(__name__)
+blueprint = Blueprint("time", __name__)
 
 
 def get_time(zone: str) -> str:
-	tz = pytz.timezone(zone)  # get timezone object
-	time = datetime.now(tz)	  # get the current time in timezone
-	return time.strftime("%H hours %M minutes %S seconds")
+    """
+    Gets the current time in the specified timezone
+    :param zone: string from the list pytz.all_timezones
+    :return: the string, which describes the current time in the given time zone
+    """
+    time_zone = pytz.timezone(zone)  # get timezone object
+    time = datetime.now(time_zone)	  # get the current time in timezone
+    return time.strftime("%H hours %M minutes %S seconds")
 
 
-@app.route("/", methods=["GET"])
+@blueprint.route("/", methods=["GET"])
 def get_list_of_time_zones():
-	return render_template("index.html", list=pytz.all_timezones)
+    """
+    Renders the `index.html` with a list of possible timezones
+    :return: the rendered `index.html`
+    """
+    return render_template("index.html", list=pytz.all_timezones)
 
 
-@app.route("/time/<path:zone>", methods=["GET"])
+@blueprint.route("/time/<path:zone>", methods=["GET"])
 def get_time_at(zone):
-	if zone in pytz.all_timezones:
-		time = get_time(zone)
-		return render_template("time.html", time=time, place=zone.split("/")[-1], error=False)
-	else:
-		return render_template("time.html", error=True)
+    """
+    Renders `time.html` with a current time in the specified timezone
+    :param zone: string, the time zone
+    :return: the rendered `time.html` or aborts to 404 error
+    """
+    if zone not in pytz.all_timezones:
+        abort(404)
+    time = get_time(zone)
+    return render_template("time.html", time=time, place=zone.split("/")[-1])
+
+
+@blueprint.errorhandler(404)
+def page_not_found(_):
+    """
+    Renders 404 page
+    :return: Rendered `404.html`
+    """
+    return render_template("404.html"), 404

@@ -1,34 +1,44 @@
-# Lab 1
-## Task 1
-### Choice of the framework
+# Devops
 
-#### What is framework?
+The repo lists the tasks for the  devops course
 
-#### Which frameworks are production-ready?
+## Getting Started
 
-#### Why Flask?
-
-1. Flask framework is definitely a production-ready, 
-   which is even mention in the official [documentation](https://flask.palletsprojects.com/en/2.0.x/foreword/#what-does-micro-mean):
-   
-2. Security
-
-Flask framework takes care about the security aspects of the developments. 
-For instance, it provides a [protection from  XSS attack](https://flask.palletsprojects.com/en/2.0.x/advanced_foreword/#develop-for-the-web-with-caution).
+The goal of the first app is to show the current time in a curtain location (e.g. Moscow).
+The implementation has basically two pages:
+- the list of all locations
+- the current time for each location
 
 
-### How to execute?
+### Prerequisites
 
-#### Bash
+Python 3.7+
+
+### Installing
+
+Create a virtual environment:
+```bash
+$ python -m venv venv
+```
+Change the directory:
 ```bash
 $ cd ./app_python
+```
+Install the requirements:
+```bash
+$ pip install -r requirements.txt
+```
+Run the app
+```bash
 $ export FLASK_APP=main
 $ flask run
 ```
-#### Powershell
-```bash
-$env:FLASK_APP = "main"
-> flask run
-```
 Url to be opened:
 [http://127.0.0.1:5000/time/Europe/Moscow](http://127.0.0.1:5000/time/Europe/Moscow)
+
+### Testing
+
+```bash
+$ pip install -e .    
+$ python -m pytest
+```
