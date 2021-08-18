@@ -12,13 +12,14 @@ The implementation has basically two pages:
 
 ### Prerequisites
 
-Python 3.7+
+Python 3.9+
 
 ### Installing
 
 Create a virtual environment:
 ```bash
-$ python -m venv venv
+$ python3 -m venv venv
+$ source ./venv/bin/activate
 ```
 Change the directory:
 ```bash
@@ -28,22 +29,22 @@ Install the requirements:
 ```bash
 $ pip install -r requirements.txt
 ```
-Run the app
+Run the app (from the root directory (`./devops`))
 ```bash
-$ export FLASK_APP=main
 $ flask run
 ```
+
+Url to be opened:
+[http://127.0.0.1:5000/time/Europe/Moscow](http://127.0.0.1:5000/time/Europe/Moscow)
+
 For the development mode
 ```bash
 $ export FLASK_ENV=development
 ```
 To export as an app:
 ```bash
-$ export FLASK_APP=hello
+$ export FLASK_APP=app_python
 ```
-Url to be opened:
-[http://127.0.0.1:5000/time/Europe/Moscow](http://127.0.0.1:5000/time/Europe/Moscow)
-
 ### Testing
 
 ```bash
@@ -55,4 +56,10 @@ $ python -m pytest
 
 ```bash
 $ pylint app_python/*.py tests/*.py
+```
+
+### Docker commands
+```bash
+$ docker build --tag app_python .
+$ docker run --name app_python -p 5000:5000 app_python
 ```
