@@ -1,3 +1,6 @@
+"""
+This module is responsible for the logic of the app
+"""
 from datetime import datetime
 import pytz
 from flask import Blueprint, render_template, abort

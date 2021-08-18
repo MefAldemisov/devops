@@ -1,3 +1,6 @@
+"""
+This module is responsible for the actual testing of the app
+"""
 from app_python.main import get_time
 
 
