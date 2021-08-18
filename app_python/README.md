@@ -33,3 +33,6 @@ $env:FLASK_APP = "main"
 Url to be opened:
 [http://127.0.0.1:5000/time/Europe/Moscow](http://127.0.0.1:5000/time/Europe/Moscow)
 
+### Used tools and references:
+- Linter for Python: pylint (github actions)
+- [Template](https://github.com/PurpleBooth/a-good-readme-template#readme) for README
