@@ -1,5 +1,5 @@
 import pytz
-from flask import Flask, render_template
+from flask import Flask, render_template, abort
 from datetime import datetime
 
 
@@ -19,8 +19,12 @@ def get_list_of_time_zones():
 
 @app.route("/time/<path:zone>", methods=["GET"])
 def get_time_at(zone):
-	if zone in pytz.all_timezones:
-		time = get_time(zone)
-		return render_template("time.html", time=time, place=zone.split("/")[-1], error=False)
-	else:
-		return render_template("time.html", error=True)
+	if zone not in pytz.all_timezones:
+		abort(404)
+	time = get_time(zone)
+	return render_template("time.html", time=time, place=zone.split("/")[-1])
+
+
+@app.errorhandler(404)
+def page_not_found(_):
+	return render_template("404.html"), 404
