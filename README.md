@@ -33,6 +33,14 @@ Run the app
 $ export FLASK_APP=main
 $ flask run
 ```
+For the development mode
+```bash
+$ export FLASK_ENV=development
+```
+To export as an app:
+```bash
+$ export FLASK_APP=hello
+```
 Url to be opened:
 [http://127.0.0.1:5000/time/Europe/Moscow](http://127.0.0.1:5000/time/Europe/Moscow)
 
@@ -41,4 +49,10 @@ Url to be opened:
 ```bash
 $ pip install -e .    
 $ python -m pytest
+```
+
+### Linting
+
+```bash
+$ pylint app_python/*.py tests/*.py
 ```
