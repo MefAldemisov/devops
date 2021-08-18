@@ -36,3 +36,9 @@ $ flask run
 Url to be opened:
 [http://127.0.0.1:5000/time/Europe/Moscow](http://127.0.0.1:5000/time/Europe/Moscow)
 
+### Testing
+
+```bash
+$ pip install -e .    
+$ python -m pytest
+```
