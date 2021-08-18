@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 1</title>
+</head>
+<body>
+    <h1>Select the region</h1>
+    <ul>
+        <li><a href="time/Europe/Moscow">Moscow</a></li>
+        {% for item in list %}
+            {% set link_time = 'time/' + item%}
+            <li><a href={{link_time}}>{{ item }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
