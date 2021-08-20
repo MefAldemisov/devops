@@ -29,6 +29,10 @@ Install the requirements:
 ```bash
 $ pip install -r requirements.txt
 ```
+Generation of the requirements within venv:
+```bash
+$ pip freeze > requirements.txt
+```
 Run the app (from the root directory (`./devops`))
 ```bash
 $ flask run
@@ -58,8 +62,10 @@ $ python -m pytest
 $ pylint app_python/*.py tests/*.py
 ```
 
-### Docker commands
+### Useful Docker commands
 ```bash
 $ docker build --tag app_python .
 $ docker run --name app_python -p 5000:5000 app_python
+$ docker rm $(docker ps -a -q)
+$ docker-compose up
 ```
