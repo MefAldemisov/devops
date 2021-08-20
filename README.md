@@ -4,7 +4,7 @@ The repo lists the tasks for the  devops course
 
 ## Getting Started
 
-The goal of the first app is to show the current time in a curtain location (e.g. Moscow).
+The goal of the first app is to show the current time in a curtain location (for instance, in Moscow).
 The implementation has basically two pages:
 - the list of all locations
 - the current time for each location
@@ -63,11 +63,16 @@ $ pylint app_python/*.py tests/*.py
 ```
 
 ### Docker
+
+Change directory to `./app_python` to use the docker:
+```bash
+$ cd ./app_python
+```
 To build the image:
 ```bash
 $ docker-compose up
 ```
-To load the image from dockerhub:
+To load the image from [dockerhub](https://hub.docker.com):
 ```bash
 $ docker pull mefaldemisov/devops_lab_2:latest
 $ docker run mefaldemisov/devops_lab_2:latest
