@@ -62,10 +62,13 @@ $ python -m pytest
 $ pylint app_python/*.py tests/*.py
 ```
 
-### Useful Docker commands
+### Docker
+To build the image:
 ```bash
-$ docker build --tag app_python .
-$ docker run --name app_python -p 5000:5000 app_python
-$ docker rm $(docker ps -a -q)
 $ docker-compose up
+```
+To load the image from dockerhub:
+```bash
+$ docker pull mefaldemisov/devops_lab_2:latest
+$ docker run mefaldemisov/devops_lab_2:latest
 ```

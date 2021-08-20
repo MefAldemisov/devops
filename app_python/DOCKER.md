@@ -3,7 +3,10 @@
 
 1. Use comments
    
-2. Reduce the size of a line e.g. using `/\` for complex `RUN` statements
+2. Reduce the size of a line. For example, use `/\` for complex `RUN` statements
+
+3. Use Dockerfile liners.
+- This [linter](https://www.dockerfilelint.com/#/) is used in this project
 
 ## Reduce the size of the build context 
 
@@ -18,7 +21,7 @@ Example (for Dockerfile in this repo):
 | `devops/`                    | 949B                          |
 | `devops/app_python`          | 467B                          |
 
-It means that the build context was reduced twice with relocation.
+It means that the build context reduced twice with relocation.
 
 2. Use `.dockerignire`
 
@@ -38,8 +41,14 @@ If we ignore the `*.md` files and `__pycache__`, the build context size will be 
 - use pipelines for `RUN` statements
 5. Use small base images
 6. Use `VOLUME` to connect the local version of the big file to the container. 
-   It may be also useful for files, which should be updated (e.g. during debugging process)
+   It may be also useful for files, which should be updated (foe instance, during debugging process)
 
 ## Use instructions properly
-1. Remember tie difference between [`RUN` and `CMD`](https://stackoverflow.com/questions/37461868/difference-between-run-and-cmd-in-a-dockerfile)
-2. Remember tie difference between [`ADD` and `COPY`](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#add-or-copy)
+
+1. Remember tie difference between 
+   [`RUN` and `CMD`](https://stackoverflow.com/questions/37461868/difference-between-run-and-cmd-in-a-dockerfile)
+2. Remember tie difference between 
+   [`ADD` and `COPY`](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#add-or-copy)
+
+## Special practices
+1. Use `docker-compose` to prevent constant repetition of `docker build` and `docker run` during testing

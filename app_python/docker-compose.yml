@@ -1,11 +1,11 @@
 version: "3.8"
 
 services:
-  server:
+  app:
     build:
       context: .
       dockerfile: ./Dockerfile
-    image: devops_lab2
+    image: "mefaldemisov/devops_lab_2:latest"
     container_name: devops_lab2_app
     ports:
-      - 5000:5000
+      - "5000:5000"
