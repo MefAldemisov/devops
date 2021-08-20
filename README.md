@@ -33,7 +33,7 @@ Generation of the requirements within venv:
 ```bash
 $ pip freeze > requirements.txt
 ```
-Run the app (from the root directory (`./devops`))
+Run the app (from the root directory `./devops`)
 ```bash
 $ flask run
 ```
@@ -75,5 +75,5 @@ $ docker-compose up
 To load the image from [dockerhub](https://hub.docker.com):
 ```bash
 $ docker pull mefaldemisov/devops_lab_2:latest
-$ docker run mefaldemisov/devops_lab_2:latest
+$ docker run -p 5000:5000 --rm -it mefaldemisov/devops_lab_2:latest
 ```
