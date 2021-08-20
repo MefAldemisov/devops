@@ -2,6 +2,7 @@
 ## Practices, common for any type of files
 
 1. Use comments
+   
 2. Reduce the size of a line e.g. using `/\` for complex `RUN` statements
 
 ## Reduce the size of the build context 
@@ -36,6 +37,8 @@ If we ignore the `*.md` files and `__pycache__`, the build context size will be 
 4. Reduce the number of "layers" (`COPY`, `RUN` and `ADD` statements)
 - use pipelines for `RUN` statements
 5. Use small base images
+6. Use `VOLUME` to connect the local version of the big file to the container. 
+   It may be also useful for files, which should be updated (e.g. during debugging process)
 
 ## Use instructions properly
 1. Remember tie difference between [`RUN` and `CMD`](https://stackoverflow.com/questions/37461868/difference-between-run-and-cmd-in-a-dockerfile)
