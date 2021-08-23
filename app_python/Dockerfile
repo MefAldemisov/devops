@@ -1,9 +1,13 @@
-FROM python:3
+FROM python:3.9-alpine
+MAINTAINER MefAldemisov, alinnemef@gmail.com
+# requirements.txt includes the libraries for linting and testing
+# which are not nececcary for app execution
+RUN pip install --no-cache-dir Flask==2.0.1 pytz==2021.1
+# the `templates` directory may be potentially large
+VOLUME ./templates ./templates
+# the COPY is made the some directory to prevent mess in the container
 COPY . /app
 WORKDIR /app
-VOLUME ./templates ./templates
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
 
 EXPOSE 5000
 ENV FLASK_APP=__init__.py
