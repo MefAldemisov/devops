@@ -1,13 +1,20 @@
 FROM python:3.9-alpine
-MAINTAINER MefAldemisov, alinnemef@gmail.com
+LABEL maintainer="alinnamef@gmail.com"
+
+WORKDIR /app
+# create user, make user the owner of the directory
+RUN adduser -D app_user && chown -R app_user /app
+USER app_user
+
 # requirements.txt includes the libraries for linting and testing
 # which are not nececcary for app execution
-RUN pip install --no-cache-dir Flask==2.0.1 pytz==2021.1
-# the `templates` directory may be potentially large
+# docker-requirements.txt includes only limited number of dependencies
+COPY docker-requirements.txt docker-requirements.txt
+RUN pip install --no-cache-dir -r docker-requirements.txt
+
+## the `templates` directory may be potentially large
 VOLUME ./templates ./templates
-# the COPY is made the some directory to prevent mess in the container
 COPY . /app
-WORKDIR /app
 
 EXPOSE 5000
 ENV FLASK_APP=__init__.py

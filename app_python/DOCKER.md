@@ -66,3 +66,5 @@ If we ignore the `*.md` files and `__pycache__`, the build context size will be 
    
 3. Use tags for versioning
 > To tag the image into multiple repositories after the build, add multiple -t parameters when you run the build command:
+
+4. Secure the container by the creation of special user
