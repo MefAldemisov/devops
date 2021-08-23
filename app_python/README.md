@@ -22,12 +22,12 @@ For instance, it provides a [protection from  XSS attack](https://flask.palletsp
 ### Bash
 ```bash
 $ cd ./app_python
-$ export FLASK_APP=main
+$ export FLASK_APP=__init__
 $ flask run
 ```
 ### Powershell
 ```bash
-$env:FLASK_APP = "main"
+$env:FLASK_APP = "__init__"
 > flask run
 ```
 Url to be opened:
@@ -36,3 +36,4 @@ Url to be opened:
 ### Used tools and references:
 - Linter for Python: pylint (github actions)
 - [Template](https://github.com/PurpleBooth/a-good-readme-template#readme) for README
+- Linter for Dockerfile - [hadolint](https://github.com/hadolint/hadolint)
