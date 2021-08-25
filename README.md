@@ -29,7 +29,7 @@ Install the requirements:
 ```bash
 $ pip install -r requirements.txt
 ```
-Generation of the requirements within venv:
+The `requirements.txt` was generated using the following command:
 ```bash
 $ pip freeze > requirements.txt
 ```
@@ -49,15 +49,20 @@ To export as an app:
 ```bash
 $ export FLASK_APP=app_python
 ```
-### Testing
+
+### Unit Tests
+
 #### Best practices of testing
 
 ##### Testable code properties
+
 - deterministic (don't rely on the environment much, don't change over time) 
 - the SRP (single responsibility principal) holds at function-level
 - small coupling
 - ideally, the function for testing should be [pure](https://en.wikipedia.org/wiki/Pure_function)
+
 ##### Unit tests properties
+
 - easy to write
 - reliable
 - readable
@@ -65,13 +70,14 @@ $ export FLASK_APP=app_python
 - not an integration test
 
 ##### Practices themselves
+
 1. Use the IoC (Inversion of control) in case of the non-deterministic code issue
 2. Use the framework for unit testing to make it automatized
 3. One assert per test ([from](https://stackify.com/unit-testing-basics-best-practices/))
 4. Tests should be fast, simple and readable
 5. Test should not duplicate the logic of the source code
 6. Testing should be automated
-7. Use different types of testing (not only unit-testing)
+
 To run the tests:
 ```bash
 $ pip install -e .    
@@ -105,6 +111,9 @@ $ docker pull mefaldemisov/devops_lab_2:latest
 $ docker run -p 5000:5000 --rm -it mefaldemisov/devops_lab_2:latest
 ```
 
-Sources:
+References:
+- [Flask doccumentation](https://flask.palletsprojects.com/en/2.0.x/)
+- [Docker best practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/) 
+- [Top 20 Dockerfile best practices](https://sysdig.com/blog/dockerfile-best-practices/)
 - [Unit Tests, How to Write Testable Code and Why it Matters](https://www.toptal.com/qa/how-to-write-testable-code-and-why-it-matters)
 - [Unit Testing Best Practices: 9 to Ensure You Do It Right](https://www.testim.io/blog/unit-testing-best-practices/)
