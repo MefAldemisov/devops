@@ -50,6 +50,22 @@ To export as an app:
 $ export FLASK_APP=app_python
 ```
 ### Testing
+#### Best practices of testing
+
+##### Testable code properties
+- deterministic (don't rely on the environment much, don't change over time) 
+- the SRP (single responsibility principal) holds at function-level
+
+##### Unit tests properties
+- easy to write
+- reliable
+- readable
+- fast
+- not an integration test
+
+##### Practices themselves
+1. Use the IoC (Inversion of control) in case of the non-deterministic code issue
+
 
 ```bash
 $ pip install -e .    
@@ -77,3 +93,4 @@ To load the image from [dockerhub](https://hub.docker.com):
 $ docker pull mefaldemisov/devops_lab_2:latest
 $ docker run -p 5000:5000 --rm -it mefaldemisov/devops_lab_2:latest
 ```
+
