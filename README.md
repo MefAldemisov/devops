@@ -1,5 +1,7 @@
 ![Pylint workflow](https://github.com/MefAldemisov/devops/actions/workflows/pylint.yml/badge.svg)
 ![Pytest workflow](https://github.com/MefAldemisov/devops/actions/workflows/pytest.yml/badge.svg)
+![Pytest workflow](https://github.com/MefAldemisov/devops/actions/workflows/docker.yml/badge.svg)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=MefAldemisov_devops&metric=alert_status)](https://sonarcloud.io/dashboard?id=MefAldemisov_devops)
 
 # Devops
 
