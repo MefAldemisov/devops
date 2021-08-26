@@ -1,3 +1,6 @@
+![Pylint workflow](https://github.com/MefAldemisov/devops/actions/workflows/pylint.yml/badge.svg)
+![Pytest workflow](https://github.com/MefAldemisov/devops/actions/workflows/pytest.yml/badge.svg)
+
 # Devops
 
 The repo lists the tasks for the  devops course
@@ -107,8 +110,8 @@ $ docker-compose up
 ```
 To load the image from [dockerhub](https://hub.docker.com):
 ```bash
-$ docker pull mefaldemisov/devops_lab_2:latest
-$ docker run -p 5000:5000 --rm -it mefaldemisov/devops_lab_2:latest
+$ docker pull mefaldemisov/devops_course:latest
+$ docker run -p 5000:5000 --rm -it mefaldemisov/devops_course:latest
 ```
 
 References:
