@@ -117,7 +117,7 @@ $ docker run -p 5000:5000 --rm -it mefaldemisov/devops_course:latest
 ```
 
 References:
-- [Flask doccumentation](https://flask.palletsprojects.com/en/2.0.x/)
+- [Flask documentation](https://flask.palletsprojects.com/en/2.0.x/)
 - [Docker best practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/) 
 - [Top 20 Dockerfile best practices](https://sysdig.com/blog/dockerfile-best-practices/)
 - [Unit Tests, How to Write Testable Code and Why it Matters](https://www.toptal.com/qa/how-to-write-testable-code-and-why-it-matters)
