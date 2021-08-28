@@ -10,7 +10,7 @@
    (for instance, use the [act](https://yonatankra.com/how-to-test-github-actions-locally-using-act/) 
    tool for Git Hub actions)
 7. Use the actions from the marketplace
-
+8. Use caching ([example](https://docs.docker.com/language/python/configure-ci-cd/#optimizing-the-workflow))
 ## References
 
 1. [GitHub Actions Best Practices](https://www.datree.io/resources/github-actions-best-practices)
