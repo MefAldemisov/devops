@@ -31,13 +31,16 @@ class Requester:
         return self.status
 
 
+MOSCOW_PATH = "/time/Europe/Moscow"
+
+
 def test_city_name_in_response(client):
     """
     Test for `main.get_time_at` function.
     Checks if the city-based response includes the name of the city
     :param client: client for a Flask app
     """
-    assert Requester(client, "/time/Europe/Moscow").response_has("Moscow")
+    assert Requester(client, MOSCOW_PATH).response_has("Moscow")
 
 
 def test_region_name_not_in_response(client):
@@ -46,7 +49,7 @@ def test_region_name_not_in_response(client):
     Validates that the city-based response doesn't include the region
     :param client: client for a Flask app
     """
-    assert not Requester(client, "/time/Europe/Moscow").response_has("Europe")
+    assert not Requester(client, MOSCOW_PATH).response_has("Europe")
 
 
 def test_link_in_response(client):
@@ -55,7 +58,7 @@ def test_link_in_response(client):
     Checks that it is possible to return to the main page from the response
     :param client: client for a Flask app
     """
-    assert Requester(client, "/time/Europe/Moscow").response_has('<a href="/">')
+    assert Requester(client, MOSCOW_PATH).response_has('<a href="/">')
 
 
 def test_wrong_path_msg(client):

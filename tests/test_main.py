@@ -1,5 +1,5 @@
 """
-This module is responsible the testing of `get_time` finction
+This module is responsible the testing of `get_time` function
 """
 from time import sleep, localtime
 from datetime import datetime, timedelta, timezone
@@ -53,6 +53,11 @@ class FixedDatetime:
         return self._format_expected(date_time.hour, date_time.minute, date_time.second)
 
 
+MOSCOW = "Europe/Moscow"
+KIROV = "Europe/Kirov"
+VLADIVOSTOK = "Asia/Vladivostok"
+
+
 def test_get_time_expected_output():
     """
     Test for `main.get_time()` function.
@@ -69,8 +74,8 @@ def test_get_time_different_tz():
     Checks if the output is the different for locations in different timezones
     """
     fixed_datetime = FixedDatetime()
-    moscow_time = get_time("Europe/Moscow", fixed_datetime.generate_datetime)
-    vladivostok_time = get_time("Asia/Vladivostok", fixed_datetime.generate_datetime)
+    moscow_time = get_time(MOSCOW, fixed_datetime.generate_datetime)
+    vladivostok_time = get_time(VLADIVOSTOK, fixed_datetime.generate_datetime)
     assert moscow_time != vladivostok_time, "the timezone was not applied"
 
 
@@ -80,8 +85,8 @@ def test_get_time_same_tz():
     Checks if the output is the same for locations in the same timezone
     """
     fixed_datetime = FixedDatetime()
-    moscow_time = get_time("Europe/Moscow", fixed_datetime.generate_datetime)
-    kirov_time = get_time("Europe/Kirov", fixed_datetime.generate_datetime)
+    moscow_time = get_time(MOSCOW, fixed_datetime.generate_datetime)
+    kirov_time = get_time(KIROV, fixed_datetime.generate_datetime)
     assert moscow_time == kirov_time
 
 
@@ -90,7 +95,7 @@ def test_get_time_update():
     Test for `main.get_time()` function.
     Checks if the time updates
     """
-    moscow_time_start = get_time("Europe/Moscow")
+    moscow_time_start = get_time(MOSCOW)
     sleep(1)
-    moscow_time_update = get_time("Europe/Moscow")
+    moscow_time_update = get_time(MOSCOW)
     assert moscow_time_start != moscow_time_update
