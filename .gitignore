@@ -2,3 +2,6 @@ venv/
 .idea/
 app_python.egg-info/
 *__pycache__/
+.coverage
+.pytest_cache/
+*.secrets
