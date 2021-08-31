@@ -1,5 +1,8 @@
 pipeline {
-    agent { docker { image 'python:3.9-alpine' } }
+    agent any
+    environment {
+        image_name = "mefaldemisov/devops-course"
+    }
     stages {
         stage('Preparation') {
             steps {
@@ -17,18 +20,26 @@ pipeline {
                 sh 'python -m pytest'
             }
         }
-        stage('Push') {
+        stage('Build') {
             steps{
                 script {
-                    dockerImage = docker.build 'mefaldemisov/devops-course'
+                    dockerImage = docker.build image_name
                 }
-                script {
-                    docker.withRegistry('', 'docker-hub') {
-                        app.push("${env.BUILD_NUMBER}")
-                        app.push("latest")
-                    }
+            }
+        }
+        stage('Deploy') {
+            script {
+                docker.withRegistry('', 'docker-hub') {
+                    app.push("$BUILD_NUMBER")
+                    app.push("latest")
                 }
             }
 	    }
+	    stage('Remove Unused docker image') {
+            steps {
+                sh "docker rmi $image_name:$BUILD_NUMBER"
+                sh "docker rmi $image_name:latest"
+            }
+        }
     }
 }
