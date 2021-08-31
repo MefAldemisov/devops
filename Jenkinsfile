@@ -28,10 +28,12 @@ pipeline {
             }
         }
         stage('Deploy') {
-            script {
-                docker.withRegistry('', 'docker-hub') {
-                    app.push("$BUILD_NUMBER")
-                    app.push("latest")
+            steps {
+                script {
+                    docker.withRegistry('', 'docker-hub') {
+                        app.push("$BUILD_NUMBER")
+                        app.push("latest")
+                    }
                 }
             }
 	    }
