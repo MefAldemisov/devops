@@ -20,7 +20,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    dockerImage = docker.build image_name './app_python/Dockerfile'
+                    dockerImage = docker.build(image_name, './app_python/Dockerfile')
                 }
             }
         }
