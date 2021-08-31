@@ -18,8 +18,8 @@ pipeline {
             }
         }
         stage('Build') {
-            sh 'cd ./app_python'
             steps {
+                sh 'cd ./app_python'
                 script {
                     dockerImage = docker.build image_name
                 }
