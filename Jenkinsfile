@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Preparation') {
             steps {
-                sh 'pip install --no-cache-dir -r app_python/requirements.txt'
+                sh 'pip3 install --no-cache-dir -r app_python/requirements.txt'
             }
         }
         stage('Lint') {
@@ -16,8 +16,8 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'pip install -e .'
-                sh 'python -m pytest'
+                sh 'pip3 install -e .'
+                sh 'python3 -m pytest'
             }
         }
         stage('Build') {
