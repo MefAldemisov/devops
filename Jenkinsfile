@@ -17,19 +17,13 @@ pipeline {
                 sh 'python3 -m pytest'
             }
         }
-        stage('Build') {
-            steps {
-                script {
-                    dockerImage = docker.build(image_name, './app_python')
-                }
-            }
-        }
         stage('Deploy') {
             steps {
                 script {
+                    dockerImage = docker.build(image_name, './app_python')
                     docker.withRegistry('', 'docker-hub') {
-                        app.push("$BUILD_NUMBER")
-                        app.push("latest")
+                        dockerImage.push("$BUILD_NUMBER")
+                        dockerImage.push("latest")
                     }
                 }
             }
