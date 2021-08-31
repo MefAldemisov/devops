@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        image_name = "mefaldemisov/devops-course"
+        image_name = "mefaldemisov/devops_course"
     }
     stages {
         stage('Linting and testing') {
