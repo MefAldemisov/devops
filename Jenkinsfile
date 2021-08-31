@@ -20,7 +20,7 @@ pipeline {
         stage('Push') {
             steps{
                 script {
-                    dockerImage = docker.build devops-course
+                    dockerImage = docker.build 'mefaldemisov/devops-course'
                 }
                 script {
                     docker.withRegistry('', 'docker-hub') {
