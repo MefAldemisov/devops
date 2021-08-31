@@ -18,7 +18,8 @@ pipeline {
             }
         }
         stage('Build') {
-            steps{
+            sh 'cd ./app_python'
+            steps {
                 script {
                     dockerImage = docker.build image_name
                 }
@@ -26,7 +27,6 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'cd ./app_python'
                 script {
                     docker.withRegistry('', 'docker-hub') {
                         app.push("$BUILD_NUMBER")
