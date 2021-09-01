@@ -8,12 +8,12 @@ resource "null_resource" "remote" {
   provisioner "remote-exec" {
     inline = [
       "sudo yum install git -y",
-      "sudo git clone https://github.com/MefAldemisov/devops.git /var/www/html/web/",
-      "cd /var/www/html/web/app_python/",
+      "cd /var/www/html/web/",
+      "sudo git clone https://github.com/MefAldemisov/devops.git",
+      "cd /var/www/html/web/devops/app_python/",
       "pip install -r requirements.txt",
       "flask run --host 0.0.0.0 --port 5000",
-      "docker-compose up"
     ]
-    on_failure = "continue"
+    on_failure = continue
   }
 }
