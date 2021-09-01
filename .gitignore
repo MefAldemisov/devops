@@ -5,3 +5,6 @@ app_python.egg-info/
 .coverage
 .pytest_cache/
 *.secrets
+*.pem
+*.terraform.*
+*terraform.tfstate*
