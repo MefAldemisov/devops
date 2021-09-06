@@ -1,0 +1,8 @@
+version: "3.8"
+
+services:
+  app:
+    image: "mefaldemisov/devops_course:latest"
+    container_name: devops_course
+    ports:
+      - "5000:5000"

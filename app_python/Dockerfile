@@ -14,9 +14,8 @@ RUN pip install --no-cache-dir -r docker-requirements.txt
 
 ## the `templates` directory may be potentially large
 # the volumes shouldn't be used, because the files are going to be transfered through the dockerhub
-# VOLUME ./templates ./templates
 COPY . /app
 
 EXPOSE 5000
 ENV FLASK_APP=__init__.py
-CMD [ "flask", "run", "--host", "0.0.0.0", "--port", "5000" ]
+CMD [ "python3", "-m", "flask", "run", "--host", "0.0.0.0", "--port", "5000" ]

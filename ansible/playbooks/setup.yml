@@ -1,4 +1,5 @@
 - name: Run docker
   hosts: all
   roles:
-    - docker
+    - role: docker
+    - role: python-app
