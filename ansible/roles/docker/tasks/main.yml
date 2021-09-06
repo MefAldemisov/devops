@@ -1,0 +1,8 @@
+---
+- include_tasks: 0-setup-os.yml
+  when: ansible_os_family == 'Debian'
+
+- include_tasks: 1-docker.yml
+
+- include_tasks: 2-docker-compose.yml
+  when: docker_install_compose | bool
