@@ -13,7 +13,8 @@ COPY docker-requirements.txt docker-requirements.txt
 RUN pip install --no-cache-dir -r docker-requirements.txt
 
 ## the `templates` directory may be potentially large
-VOLUME ./templates ./templates
+# the volumes shouldn't be used, because the files are going to be transfered through the dockerhub
+# VOLUME ./templates ./templates
 COPY . /app
 
 EXPOSE 5000
