@@ -1,0 +1,32 @@
+---
+- name: pip3 installation
+  become: yes
+  package:
+    name: "python3-pip"
+    state: present
+
+- name: Installation of the packages required for docker
+  become: yes
+  pip:
+    name:
+      - docker==5.0.0
+      - docker-compose==1.26.0
+    state: present
+
+- name: Folder creation
+  become: yes
+  file:
+    path: "{{ app_path }}"
+    state: directory
+    mode: 0755
+
+- name: File copy
+  become: yes
+  ansible.builtin.copy:
+    src: "{{ docker_compose_up_path }}"
+    dest: "{{ app_path }}"
+
+- name: Execute "docker-compose up"
+  become: yes
+  docker_compose:
+    project_src: "{{ app_path }}"
