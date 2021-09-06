@@ -1,0 +1,25 @@
+- hosts: all
+  become: 'yes' # sudo
+  vars:
+    user:
+      - name: "ansible"
+        password: "secret"
+        ssh_key: "ssh-rsa …"
+    packages:
+      - vim
+      - wget
+      - curl
+      - htop
+  tasks:
+    - name: Change password for default user
+      user:
+        name: '"{{ item.name }}"'
+        password: '"{{ item.password | password_hash('sha512') }}"'
+        state: present
+    - name: Ensure a list of packages installed
+      apt:
+        name: '"{{ packages }}"'
+        state: present
+    - name: All done!
+      debug:
+        msg: Packages have been successfully installed
