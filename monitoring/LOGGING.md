@@ -2,14 +2,18 @@
 ## Logging with Grafana
 
 ### Process
+
+### Results
+#### Grafana + Loki:
+![Grafana dashboard with logs](./media/loki__grafana.png)
 #### Requirements:
 - docker plugin to log with loki:
 ```bash
 >  docker plugin install grafana/loki-docker-driver:latest --alias loki --grant-all-permissions
 ```
-### Results
-#### Grafana + Loki (lab 7):
-![Grafana dashboard with logs](./media/lab-7__query.png)
+### Grafana + Loki + Promtail (lab 7)
+![Grafana dashboard with logs](./media/loki__grafana__promtail.png)
+![Grafana dashboard with logs](./media/loki.png)
 
 ### Best practices
     
