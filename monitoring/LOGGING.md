@@ -28,5 +28,13 @@
 - Don't produce many similar dashboards
 - Reuse the dashboards with cross-referencing dashboards
 - The dashboard should have some exact purpouse or answer some exact question
+
+## Logging with Prometheus
+### Output:
+http://localhost:9090/targets.
+![The loki and prometheus targets are up](./media/prometheus_start.png)
+### Some examples from "status" part
+![](./media/status1.png)
+![](./media/status2.png)
 ## References
 - [Loki label best practices](https://grafana.com/docs/loki/latest/best-practices/)
