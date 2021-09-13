@@ -5,11 +5,12 @@ networks:
 
 x-defaults:
   &config
+  mem_limit: 512m
   logging:
     driver: "json-file"
     options:
-      max-size: "100m"
-      max-file: "5"
+      max-size: "64m"
+      max-file: "4"
       tag: "{{.ImageName}}|{{.Name}}|{{.ContainerName}}"
   restart: unless-stopped
   networks:
