@@ -8,3 +8,4 @@ app_python.egg-info/
 *.pem
 *.terraform.*
 *terraform.tfstate*
+./monitoring/loki/lok-data/
