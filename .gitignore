@@ -9,3 +9,4 @@ app_python.egg-info/
 *.terraform.*
 *terraform.tfstate*
 monitoring/loki/loki-data
+monitoring/promtail/promtail-data

@@ -2,6 +2,7 @@ auth_enabled: false
 
 server:
   http_listen_port: 3100
+  log_level: warn
 
 ingester:
   lifecycler:
@@ -11,13 +12,13 @@ ingester:
         store: inmemory
       replication_factor: 1
     final_sleep: 0s
-  chunk_idle_period: 5m
-  chunk_retain_period: 30s
-  max_transfer_retries: 0
+  chunk_idle_period: 1m
+  chunk_retain_period: 5m
+  max_chunk_age: 2m
 
 schema_config:
   configs:
-    - from: 2018-04-15
+    - from: 2020-04-01
       store: boltdb
       object_store: filesystem
       schema: v11
@@ -28,18 +29,18 @@ schema_config:
 storage_config:
   boltdb:
     directory: /tmp/loki/index
-
   filesystem:
     directory: /tmp/loki/chunks
 
 limits_config:
   enforce_metric_name: false
-  reject_old_samples: true
+  reject_old_samples: false
   reject_old_samples_max_age: 168h
 
 chunk_store_config:
-  max_look_back_period: 0s
+  max_look_back_period: 0
 
 table_manager:
+  # if you need delete logs
   retention_deletes_enabled: false
-  retention_period: 0s
+  retention_period: 0

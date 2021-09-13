@@ -3,6 +3,18 @@ version: '3.7'
 networks:
   logs:
 
+x-defaults:
+  &config
+  logging:
+    driver: "json-file"
+    options:
+      max-size: "100m"
+      max-file: "5"
+      tag: "{{.ImageName}}|{{.Name}}|{{.ContainerName}}"
+  restart: unless-stopped
+  networks:
+    - logs
+
 services:
 
   grafana:
@@ -15,13 +27,11 @@ services:
       - VIRTUAL_HOST=monitoring.grafana
       - NETWORK_ACCESS=internal
       - VIRTUAL_PORT=3000
-    restart: unless-stopped
     expose:
       - 3000
     ports:
       - "3000:3000"
-    networks:
-      - logs
+    <<: *config
 
   loki:
     container_name: monitoring.loki
@@ -31,22 +41,28 @@ services:
     ports:
       - "3100:3100"
     volumes:
-      - ${PWD}/loki:${PATH_TO_LOKI}
-      - ${PWD}/loki/loki-data:/tmp/loki/
+      - ${PWD}/loki/loki-config.yml:${PATH_TO_LOKI}/loki-config.yml
+      - ${PWD}/loki/loki-data:/tmp/loki
     command: -config.file=${PATH_TO_LOKI}/loki-config.yml
-    restart: unless-stopped
-    networks:
-      - logs
+    <<: *config
+
+  promtail:
+      image: grafana/promtail:2.3.0
+      container_name: monitoring-promtail
+      expose:
+        - 9080
+      ports:
+        - "9080:9080"
+      volumes:
+        - /var/lib/docker/containers:/var/lib/docker/containers
+        - ${PWD}/promtail/promtail.yml:${PATH_TO_PRMPT}/promtail.yml
+        - ${PWD}/promtail/promtail-data:/var/lib/promtail/positions
+      command: -config.file=${PATH_TO_PRMPT}/promtail.yml
+      <<: *config
 
   app:
     image: "mefaldemisov/devops_course:latest"
     container_name: devops_course
     ports:
       - "5000:5000"
-    networks:
-      - logs
-    logging:
-      driver: loki
-      options:
-        loki-url: http://localhost:3100/loki/api/v1/push
-        loki-external-labels: job=python_app,environment=development
+    <<: *config
