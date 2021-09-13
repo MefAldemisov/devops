@@ -42,5 +42,6 @@ http://localhost:9090/targets.
 ![Some colorful dots](./media/loki__based.png)
 ### Dashboard from prometheus source
 ![Some colorful lines](./media/prometheus__based.png)
+
 ## References
 - [Loki label best practices](https://grafana.com/docs/loki/latest/best-practices/)
