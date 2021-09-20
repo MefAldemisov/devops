@@ -66,3 +66,52 @@ NAME                         TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)    
 service/app-python-service   ClusterIP   10.98.19.94   <none>        5000/TCP   50s
 service/kubernetes           ClusterIP   10.96.0.1     <none>        443/TCP    3h18m
 ```
+
+## Helm
+
+1. Creation 
+```bash
+> helm create app-python
+```
+2. Updates in `values.yml`
+- image:
+```yaml
+image:
+  repository: mefaldemisov/devops_course
+  pullPolicy: IfNotPresent
+  tag: "latest"
+  port: 5000
+```
+- service:
+```yaml
+service:
+  type: LoadBalancer
+  port: 5000
+```
+Updates in `teplates/deployment` (the default port is `80`, which is not our case):
+```yaml
+ ports:
+    - name: http
+      containerPort: {{ .Values.service.port }}
+```
+3. Install
+```bash
+> helm package app-python
+> helm install app-python ./app-python-0.1.0.tgz  # first time
+> helm upgrade app-python ./app-python-0.1.0.tgz  # if you already have some version in use   
+```
+4. Run
+```bash
+minikube service app-python
+```
+### Output:
+The output is relatively similar to all previous outputs, but now the name of the pod includes hash
+```bash
+>  kubectl get pods,svc   
+NAME                              READY   STATUS    RESTARTS   AGE
+pod/app-python-75f646c65b-54pj9   1/1     Running   0          2m29s
+
+NAME                 TYPE           CLUSTER-IP    EXTERNAL-IP   PORT(S)          AGE
+service/app-python   LoadBalancer   10.97.244.0   <pending>     5000:31718/TCP   30m
+service/kubernetes   ClusterIP      10.96.0.1     <none>        443/TCP          3h56m
+```

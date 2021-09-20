@@ -11,3 +11,4 @@ app_python.egg-info/
 monitoring/loki/loki-data
 monitoring/promtail/promtail-data
 monitoring/prometheus/prometheus-data
+*.tgz
