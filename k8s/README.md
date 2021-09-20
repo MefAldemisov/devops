@@ -48,3 +48,20 @@ kubernetes   ClusterIP      10.96.0.1      <none>        443/TCP          13m
 ```
 
 ## Deployment using configuration files:
+
+### Execution:
+```bash
+kubectl apply -f deployment.yml
+kubectl apply -f service.yml
+minikube service app-python-service
+```
+### Results (similar to the results above)
+```bash
+> kubectl get pods                                                                                  110ms  Mon Sep 20 17:35:56 2021
+NAME                                     READY   STATUS    RESTARTS   AGE
+app-python-deployment-6495f4b675-mfr6l   1/1     Running   0          14m
+> kubectl get svc                                                                                275ms  Mon Sep 20 18:04:20 2021
+NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+app-python-service   ClusterIP   10.106.90.166   <none>        5000/TCP   101s
+kubernetes           ClusterIP   10.96.0.1       <none>        443/TCP    42m
+```
