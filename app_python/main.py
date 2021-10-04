@@ -1,6 +1,7 @@
 """
 This module is responsible for the logic of the app
 """
+import os
 from datetime import datetime
 from typing import Callable
 
@@ -10,6 +11,14 @@ from flask import Blueprint, render_template, abort
 
 blueprint = Blueprint("time", __name__)
 PATH_TO_COUNTER = "./data/visits.txt"
+
+try:
+    # creation of the file and directory
+    os.mkdir("data")
+    with open(PATH_TO_COUNTER, "w") as new_file:
+        new_file.write(str(0))
+except FileExistsError:
+    print("The directory already exists")
 
 def get_current_time() -> datetime:
     """
