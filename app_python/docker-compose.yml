@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    image: "mefaldemisov/devops_course:latest"
+    image: "mefaldemisov/devops_course:laaatest"
     container_name: devops_course
     ports:
       - "5000:5000"
