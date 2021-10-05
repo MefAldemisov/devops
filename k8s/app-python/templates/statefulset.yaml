@@ -5,47 +5,25 @@ metadata:
   labels:
     {{- include "app-python.labels" . | nindent 4 }}
 spec:
-  serviceName: {{ include "app-python.fullname" . }}
-  {{- if not .Values.autoscaling.enabled }}
+  serviceName: {{ .Chart.Name }}
+  podManagementPolicy: {{ .Values.statefulSet.podManagementPolicy }}
   replicas: {{ .Values.replicaCount }}
-  {{- end }}
   selector:
     matchLabels:
       {{- include "app-python.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
-      annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       labels:
         {{- include "app-python.selectorLabels" . | nindent 8 }}
     spec:
-      {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      serviceAccountName: {{ include "app-python.serviceAccountName" . }}
-      securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+#      serviceAccountName: {{ include "app-python.serviceAccountName" . }}
       containers:
         - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
@@ -56,22 +34,13 @@ spec:
                 key: my_secret
           volumeMounts:
             - name: counter
-              mountPath: {{ .Values.image.workDir }}
-              subPath: config.json
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+              mountPath: {{ .Values.image.mountDir }}
   volumeClaimTemplates:
     - metadata:
         name: counter
       spec:
-        accessModes: [ "ReadWriteOnce" ]
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 128Mi
