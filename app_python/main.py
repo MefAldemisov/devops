@@ -15,6 +15,9 @@ PATH_TO_COUNTER = "./data/visits.txt"
 try:
     # creation of the file and directory
     os.mkdir("data")
+except FileExistsError:
+    print("The directory already exists")
+try:
     with open(PATH_TO_COUNTER, "w") as new_file:
         new_file.write(str(0))
 except FileExistsError:
