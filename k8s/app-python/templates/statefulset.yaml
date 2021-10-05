@@ -35,6 +35,23 @@ spec:
           volumeMounts:
             - name: counter
               mountPath: {{ .Values.image.mountDir }}
+            - name: initdir
+              mountPath: /init-dir
+      initContainers:
+        - name: install
+          image: busybox
+          command:
+          - wget
+          - "-O"
+          - "/init-dir/index.html"
+          - http://info.cern.ch
+          volumeMounts:
+          - name: initdir
+            mountPath: "/init-dir"
+      dnsPolicy: Default
+      volumes:
+      - name: initdir
+        emptyDir: { }
   volumeClaimTemplates:
     - metadata:
         name: counter
